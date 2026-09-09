@@ -8,6 +8,12 @@ class ImportProcessError(Exception):
     """导入流程基础异常"""
 
     def __init__(self, message: str, node_name: str = "", cause: Exception = None):
+        """
+        Args:
+            message: 异常信息
+            node_name: 节点名称
+            cause: 异常原因，记录原始异常信息
+        """
         self.node_name = node_name
         self.cause = cause
         super().__init__(message)
