@@ -10,7 +10,7 @@ env/
 ENV/
 
 # Environment variables and local secrets
-.env
+.env.dev
 .env.*
 !.env.example
 !.env.template

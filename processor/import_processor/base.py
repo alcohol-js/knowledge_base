@@ -2,6 +2,8 @@ import logging
 from abc import ABC, abstractmethod
 from typing import Optional, TypeVar
 
+import colorlog
+
 from processor.import_processor.config import ImportConfig, get_config
 from processor.import_processor.exceptions import ImportProcessError
 
@@ -26,11 +28,7 @@ class BaseNode(ABC):
             return result
         except Exception as e:
             self.logger.error(f"{self.node_name} 节点执行失败: {e}")
-            raise ImportProcessError(
-                message="节点执行失败",
-                node_name = self.node_name,
-                cause=e
-            )
+            raise e
 
     @abstractmethod
     def process(self, state: T) -> T:

@@ -14,3 +14,11 @@ class NodeImportMilvus(BaseNode):
     def process(self, state: ImportGraphState):
 
         return state
+
+    def get_name(self):
+        """
+        获取节点名称
+        Returns:节点名称字符串
+
+        """
+        pass

@@ -8,8 +8,18 @@ from dataclasses import dataclass, field
 from typing import Set, Optional
 
 from dotenv import load_dotenv
+from pyexpat.errors import messages
 
-load_dotenv()
+from processor.import_processor.exceptions import ConfigurationError
+
+ENV = os.getenv("APP_ENV", "dev")
+
+# 动态加载对应的 .env 文件
+env_file = f".env.{ENV}"
+if os.path.exists(env_file):
+    load_dotenv(env_file)
+else:
+    raise ConfigurationError(message="环境变量加载异常")
 
 @dataclass
 class ImportConfig:
@@ -42,6 +52,11 @@ class ImportConfig:
     )
     default_model: str = field(
         default_factory=lambda: os.getenv("MODEL", "")
+    )
+
+    # ==================== minerU 配置 ====================
+    minerU_token: str = field(
+        default_factory=lambda: os.getenv("MINERU_API_TOKEN", "")
     )
 
     # ==================== Milvus 配置 ====================

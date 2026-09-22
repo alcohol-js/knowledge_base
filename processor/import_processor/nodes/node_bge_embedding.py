@@ -15,3 +15,11 @@ class NodeBGEEmbedding(BaseNode):
 
 
         return state
+
+    def get_name(self):
+        """
+        获取节点名称
+        Returns:节点名称字符串
+
+        """
+        pass
